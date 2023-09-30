@@ -17,7 +17,7 @@ def test_submit_student_registration_form():
     browser.element('[id="userNumber"]').should(have.attribute('placeholder').value('Mobile Number')).type(
         '8800008800')
 
-    browser.element('#dateOfBirthInput').click()
+    browser.element('[id="dateOfBirthInput"]').click()
     browser.element('[class="react-datepicker__year-select"]').click().element('option[value="1939"]').click()
     browser.element('[class="react-datepicker__month-select"]').click().element('option[value="9"]').click()
     browser.element('[class="react-datepicker__day react-datepicker__day--020"]').click()
@@ -33,13 +33,14 @@ def test_submit_student_registration_form():
     browser.element('[id="currentAddress"]').should(have.attribute('placeholder').value('Current Address')).type(
         'Far far away')
 
-    browser.element('#react-select-3-input').type('rajasthan').press_enter()
-    browser.element('#react-select-4-input').type('jaipur').press_enter()
+    browser.element('[id="react-select-3-input"]').type('rajasthan').press_enter()
+    browser.element('[id="react-select-4-input"]').type('jaipur').press_enter()
 
     browser.element('[id="submit"]').click()
 
     # ASSERT
-    browser.element('.table').all('tr td:nth-child(2)').should(have.texts
+    browser.element('[class="table table-dark table-striped table-bordered table-hover"]').all(
+        'tr td:nth-child(2)').should(have.texts
         (
         'Some User',
         'some@user.io',
