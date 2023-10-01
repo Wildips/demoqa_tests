@@ -1,3 +1,5 @@
+import os
+
 from selene.support.shared import browser
 from selene import have
 
@@ -19,7 +21,7 @@ def test_submit_student_registration_form():
     browser.element('[id="subjectsInput"]').click().type('maths').press_enter().type('hindi').press_enter()
     browser.element('[for="hobbies-checkbox-1"]').click()
     browser.element('[for="hobbies-checkbox-2"]').click()
-    browser.element('[class="form-control-file"]').send_keys('/home/sun/my_edu/qa_guru/g8_l5/image/test.png')
+    browser.element('[class="form-control-file"]').send_keys(os.path.abspath('image/test.png'))
     browser.element('[id="currentAddress"]').type('Far far away')
     browser.element('[id="react-select-3-input"]').type('rajasthan').press_enter()
     browser.element('[id="react-select-4-input"]').type('jaipur').press_enter()
@@ -40,4 +42,3 @@ def test_submit_student_registration_form():
         'Far far away',
         'Rajasthan Jaipur'
     ))
-
