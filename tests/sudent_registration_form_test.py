@@ -1,12 +1,12 @@
 import os
 
 from selene.support.shared import browser
-from selene import have
+from selene import have, command
 
 
 def test_submit_student_registration_form():
     # ARRANGE
-    browser.open('/automation-practice-form').wait_until(have.title('DEMOQA'))  # noqa
+    browser.open('/automation-practice-form').wait_until(have.title('DEMOQA'))
 
     # ACTIONS
     browser.element('[id="firstName"]').type('Some')
@@ -21,11 +21,11 @@ def test_submit_student_registration_form():
     browser.element('[id="subjectsInput"]').click().type('maths').press_enter().type('hindi').press_enter()
     browser.element('[for="hobbies-checkbox-1"]').click()
     browser.element('[for="hobbies-checkbox-2"]').click()
-    browser.element('[class="form-control-file"]').send_keys(os.path.abspath('image/test.png'))
+    browser.element('[id="uploadPicture"]').set_value(os.path.realpath('image/test.png'))
     browser.element('[id="currentAddress"]').type('Far far away')
     browser.element('[id="react-select-3-input"]').type('rajasthan').press_enter()
     browser.element('[id="react-select-4-input"]').type('jaipur').press_enter()
-    browser.element('[id="submit"]').click()
+    browser.element('[id="submit"]').perform(command.js.click)
 
     # ASSERT
     browser.element('[class="table table-dark table-striped table-bordered table-hover"]').all(
