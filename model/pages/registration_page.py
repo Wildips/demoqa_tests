@@ -21,12 +21,16 @@ class RegistrationPage:
             browser.element('[id="userEmail"]').type(user.email)
         if user.date_of_birth:
             day = user.date_of_birth.split(' ')[0]
+            if len(str(day)) == 1:
+                day = f"00{str(day)}"
+            else:
+                day = f"0{str(day)}"
             month = user.date_of_birth.split(' ')[1].split(',')[0]
             year = user.date_of_birth.split(' ')[1].split(',')[1]
             browser.element('[id="dateOfBirthInput"]').click()
             browser.element('[class="react-datepicker__month-select"]').type(month)
             browser.element('[class="react-datepicker__year-select"]').type(year)
-            browser.element(f'.react-datepicker__day--00{day}:not(.react-datepicker__day--outside-month)').click()
+            browser.element(f'.react-datepicker__day--{day}:not(.react-datepicker__day--outside-month)').click()
         if user.subjects:
             browser.element('[id="subjectsInput"]').click().type(user.subjects).press_enter()
         if user.hobbies:

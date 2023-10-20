@@ -1,5 +1,3 @@
-from selene.support.shared import browser
-from selene import have, command
 from data.users import User
 from model.pages.registration_page import RegistrationPage
 
