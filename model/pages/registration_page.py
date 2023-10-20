@@ -1,4 +1,5 @@
 import resource
+
 from selene import have, command
 from selene.support.shared import browser
 
@@ -32,6 +33,7 @@ class RegistrationPage:
 
     @staticmethod
     def fill_date_of_birth(year, month, day):
+        tmp_day = ""
         if len(str(day)) == 1:
             day = f"00{str(day)}"
         else:
