@@ -33,10 +33,15 @@ class RegistrationPage:
 
     @staticmethod
     def fill_date_of_birth(year, month, day):
+        tmp_day = ""
+        if len(str(day)) == 1:
+            day = f"00{str(day)}"
+        else:
+            day = f"0{str(day)}"
         browser.element('[id="dateOfBirthInput"]').click()
         browser.element('[class="react-datepicker__month-select"]').type(month)
         browser.element('[class="react-datepicker__year-select"]').type(year)
-        browser.element(f'.react-datepicker__day--00{day}:not(.react-datepicker__day--outside-month)').click()
+        browser.element(f'.react-datepicker__day--{day}:not(.react-datepicker__day--outside-month)').click()
 
     @staticmethod
     def fill_subjects(value):
